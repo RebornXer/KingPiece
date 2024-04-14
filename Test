@@ -3072,7 +3072,7 @@ end
                         local Noclip = Instance.new("BodyVelocity")
                         Noclip.Name = "BodyClip"
                         Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-                        Noclip.MaxForce = Vector3.new(1,1,1)
+                        Noclip.MaxForce = Vector3.new(3,3,3)
                         Noclip.Velocity = Vector3.new(0,0,0)
                     
                 end
