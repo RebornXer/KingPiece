@@ -4768,7 +4768,7 @@ Main:AddSeperatorLeft("Lucidus's Coat")
                             game:GetService'VirtualUser':CaptureController()
                             game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                         until game.Players:FindFirstChild(_G.SelectPly).Character.Humanoid.Health <= 0 or not _G.AutoKillply or not game.Players:FindFirstChild(_G.SelectPly)
-                    end.
+                    end
             end)
         end
     end)
