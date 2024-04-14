@@ -3042,6 +3042,15 @@ end
         Teleport()
     end
     
+
+    if game.PlaceId == 4520749081 then
+       First_Sea = true
+    elseif game.PlaceId == 6381829480 then
+       Second_Sea = true
+    elseif game.PlaceId == 5931540094 then
+       Dungeon_Sea = true
+    end
+
     function StopNoClip(target)
         if not target then
             _G.StopTween = true
