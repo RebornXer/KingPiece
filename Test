@@ -3552,8 +3552,11 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
         end
     end)
     end
-    
-    Main:AddSeperatorLeft("mOB aURA")
+    Main:AddSeperatorLeft("Passive tree")
+   Main:AddToggleLeft("Teleport To Passive Tree",nil,function(a)
+TP(game:GetService("Workspace").AllNPC.PassiveTree.CFrame)
+end)
+Main:AddSeperatorLeft("mOB aURA")
     Main:AddToggleLeft("Mob Aura",_G.MobAura,function(a)
         _G.MobAura = a
         end)
