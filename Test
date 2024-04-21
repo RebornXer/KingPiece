@@ -3055,10 +3055,10 @@ end
         if not target then
             _G.StopTween = true
             wait()
-            topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            TP(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
             wait()
-            if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+            if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
+                game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1"):Destroy()
             end
             _G.StopTween = false
             _G.Clip = false
@@ -3074,16 +3074,11 @@ task.spawn(function()
 if syn or not syn then
 					setfflag("HumanoidParallelRemoveNoPhysics", "False")
 					setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-					game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-					if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
-						game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-					end
+				
+				
 				else
 					if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 						if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
-							if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
-								game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
-							end
 							local BodyVelocity = Instance.new("BodyVelocity")
 							BodyVelocity.Name = "BodyVelocity1"
 							BodyVelocity.Parent =  game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
@@ -3104,7 +3099,21 @@ if syn or not syn then
 			end
 		end)
 	end)
-end)
+
+  
+    spawn(function()
+        pcall(function()
+            game:GetService("RunService").Stepped:Connect(function()
+                if _G.AutolCODE or _G.MobAura or _G.AutoTengu or _G.AutoLucidus or _G.AutoSantaEvents or _G.AutoBoss or _G.AutoHydra or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma or _G.NoClip then
+                    for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                        if v:IsA("BasePart") then
+                            v.CanCollide = false    
+                        end
+                    end
+                end
+            end)
+        end)
+    end)
    
    
     
@@ -3461,7 +3470,7 @@ end
 local Swordn = game:GetService("Players").LocalPlayer.PlayerStats.SwordName.Value
 
 spawn(function()
-    while wait() do
+    while wait(0) do
         pcall(function()
             if _G.AutolCODE or _G.AutoLucidus or _G.AutoSaber or _G.AutoTengu or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
                 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("SW_".._G.SelectWeapon.."_M1")
@@ -3471,7 +3480,7 @@ end
 end)
                 
 spawn(function()
-    while wait() do
+    while wait(0) do
         pcall(function()
             if _G.AutolCODE or _G.AutoTengu or _G.AutoSaber or _G.AutoLucidus or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("FS_".._G.SelectWeapon.."_M1")
@@ -3629,9 +3638,10 @@ end
         end)
     
     spawn(function()
-        while wait() do
+        while wait(0) do
+              pcall(function()
             if _G.AutoBoss then
-                pcall(function()
+               
                         for i,v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do
                             if v.Name == _G.SelectBoss and v.Humanoid.Health > 0 then
                                 repeat wait()
@@ -3647,8 +3657,8 @@ end
                                 until v.Humanoid.Health <= 0 or not _G.AutoBoss
                         end
                     end
-                end)
-            end
+                end
+            end)
         end
     end)
     
@@ -3762,33 +3772,13 @@ end
 
 Main:AddSeperatorLeft("Hydra")
     
-    
-  Hydra = Main:AddLabelLeft("")
-  
-
-             function iopu()
-    		if game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") then
-              Hydra:Set("Hydra : 🟢")   
-                else
-                    Hydra:Set("Hydra : 🔴")    
-                end
-                end
-
-         spawn(function()
-        while task.wait() do
-            pcall(function()
-                iopu()
-            end)
-        end
-         end)
-
 HydraIsland = Main:AddLabelLeft("")
 
 function iopuw()
     		if game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") or game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") or game:GetService("Workspace").Island:FindFirstChild("Sea King Water") then
-              HydraIsland:Set("Hydra Island : 🟢")   
+              HydraIsland:Set("Hydra  : 🟢")   
                 else
-                    HydraIsland:Set("Hydra Island : 🔴")    
+                    HydraIsland:Set("Hydra : 🔴")    
                 end
                 end
 
