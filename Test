@@ -3569,31 +3569,6 @@ Main:AddToggleLeft("Auto Bushido Ape",_G.AutoBushido,function(a)
 _G.AutoBushido = a
 end)
 
-spawn(function()
-    while wait() do
-        pcall(function()
-            if _G.AutoBushido then
-                if game:GetService("Workspace").Monster.Boss:FindFirstChild("Bushido Ape [Lv. 5000]") then
-                    for i,v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do
-                        if v.Name == "Bushido Ape [Lv. 5000]" and v.Humanoid.Health > 0 then
-                            repeat
-                                task.wait()
-                                AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
-                                TP(v.HumanoidRootPart.CFrame * MethodFarm)
-                            until _G.AutoBushido == false or v.Humanoid.Health <= 0
-                        end
-                    end
-                else
-                    if game:GetService("ReplicatedStorage").MOB:FindFirstChild("Bushido Ape [Lv. 5000]") then
-                        -- ต้องกำหนด MethodFarm ก่อนใช้งาน
-                        -- ในที่นี้เราจะให้ TP ไปที่จุดเริ่มต้น (0, 0, 0)
-                        TP(game:GetService("ReplicatedStorage").MOB:FindFirstChild("").HumanoidRootPart.CFrame * MethodFarm)
-                end
-            end
-        end)
-    end
-end)
 
 
    Main:AddToggleLeft("Teleport To Passive Tree",nil,function(a)
