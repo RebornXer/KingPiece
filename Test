@@ -3065,22 +3065,48 @@ end
         end
     end
     
- spawn(function()
+task.spawn(function()
+    game:GetService("RunService").Stepped:Connect(function()
         pcall(function()
-            while wait() do
-            if _G.AutolCODE or _G.AutoFarm or _G.AutoGhostShip or _G.MobAura or _G.AutoTengu or _G.AutoLucidus or _G.AutoHydra or _G.AutoBoss or _G.AutoSantaEvents or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma then
-                        local Noclip = Instance.new("BodyVelocity")
-                        Noclip.Name = "BodyClip"
-                        Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-                        Noclip.MaxForce = Vector3.new(3,3,3)
-                        Noclip.Velocity = Vector3.new(0,0,0)
-                    
-                end
-            end
-        end)
-    end)
-    
-    
+            --[World 1]
+              if _G.AutolCODE or _G.AutoFarm or _G.AutoGhostShip or _G.MobAura or _G.AutoTengu or _G.AutoLucidus or _G.AutoHydra or _G.AutoBoss or _G.AutoSantaEvents or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma then
+
+if syn or not syn then
+					setfflag("HumanoidParallelRemoveNoPhysics", "False")
+					setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+					game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+					if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
+						game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+					end
+				else
+					if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+						if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
+							if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
+								game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = false
+							end
+							local BodyVelocity = Instance.new("BodyVelocity")
+							BodyVelocity.Name = "BodyVelocity1"
+							BodyVelocity.Parent =  game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+							BodyVelocity.MaxForce = Vector3.new(10000, 10000, 10000)
+							BodyVelocity.Velocity = Vector3.new(0, 0, 0)
+						end
+					end
+					for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+						if v:IsA("BasePart") then
+							v.CanCollide = false    
+						end
+					end
+				end
+			else
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1") then
+					game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity1"):Destroy();
+				end
+			end
+		end)
+	end)
+end)
+   
+   
     
     spawn(function()
         while wait() do
@@ -3090,20 +3116,6 @@ end
                 end)
             end
         end
-    end)
-    
-    spawn(function()
-        pcall(function()
-            game:GetService("RunService").Stepped:Connect(function()
-                if _G.AutolCODE or _G.MobAura or _G.AutoTengu or _G.AutoLucidus or _G.AutoSantaEvents or _G.AutoBoss or _G.AutoHydra or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma or _G.NoClip then
-                    for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                        if v:IsA("BasePart") then
-                            v.CanCollide = false    
-                        end
-                    end
-                end
-            end)
-        end)
     end)
     
     function UseSkill(skill)
@@ -4255,7 +4267,14 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
     end)
     end
     Main:AddSeperatorLeft("Others")
-    if First_Sea then
+ItamList = {
+"Big Mom Blade",
+"Bisento"
+}
+
+   Main:AddDropdownLeft("Select Method",itamList,function(value)
+        _G.Method = value
+    end)
     Main:AddToggleLeft("Auto Big Mom Blade",_G.AutoBigMomBlade,function(value)
         _G.AutoBigMomBlade = value
         StopNoClip(_G.AutoBigMomBlade)
@@ -4364,7 +4383,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
             end
         end
     end)
-    end
+    
     
     
     spawn(function()
@@ -4390,7 +4409,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
         end
     end)
     
-    if Second_Sea then
+
     Main:AddToggleLeft("Auto Kaido",_G.AutoKaido,function(value)
         _G.AutoKaido = value
         StopNoClip(_G.AutoKaido)
@@ -4443,9 +4462,9 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
                             end
         end
     end)
-    end
+    
 
-    if Second_Sea then
+  
 
     Main:AddSeperatorLeft("Tengu Mask")
     Main:AddToggleLeft("Auto Tengu Mask",_G.AutoTengu,function(a)
@@ -4595,29 +4614,3 @@ Main:AddSeperatorLeft("Lucidus's Coat")
                             end
         end
     end)
-    end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
