@@ -3570,7 +3570,7 @@ _G.AutoBushido = a
 end)
 
 spawn(function()
-    while true do
+    while wait() do
         pcall(function()
             if _G.AutoBushido then
                 if game:GetService("Workspace").Monster.Boss:FindFirstChild("Bushido Ape [Lv. 5000]") then
