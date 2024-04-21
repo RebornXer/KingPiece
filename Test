@@ -3181,21 +3181,21 @@ _G.Method = "Upper"
         _G.Method = value
     end)
     
-    spawn(function()
-        while wait() do 
-            pcall(function()
-                if _G.Method == "Behind" then
-                    MethodFarm = CFrame.new(0,0,DistanceMob)
-                elseif _G.Method == "Below" then
-                    MethodFarm = CFrame.new(0,-DistanceMob,0) * CFrame.Angles(math.rad(90),0,0)
-                elseif _G.Method == "Upper" then
-                    MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
-                else 
-                  MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
-end
-            end)
-        end
-    end)
+   spawn(function()
+    while wait(0) do 
+        pcall(function()
+            if _G.Method == "Behind" then
+                MethodFarm = CFrame.new(0, 0, DistanceMob)
+            elseif _G.Method == "Below" then
+                MethodFarm = CFrame.new(0, -DistanceMob, 0) * CFrame.Angles(math.rad(90), 0, 0)
+            elseif _G.Method == "Upper" then
+                MethodFarm = CFrame.new(0, DistanceMob, 0) * CFrame.Angles(math.rad(-90), 0, 0)
+            else 
+                MethodFarm = CFrame.new(0, DistanceMob, 0) * CFrame.Angles(math.rad(-90), 0, 0)
+            end
+        end)
+    end
+end)
 
  DistanceMob = 10
     Main:AddSliderRight("Distance",1,100,10,function(value)
