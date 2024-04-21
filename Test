@@ -3568,7 +3568,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
 Main:AddToggleLeft("Auto Bushido Ape",_G.AutoBushido,function(a)
 _G.AutoBushido = a
 end)
-game:GetService("Workspace").Monster.Boss["Bushido Ape [Lv. 5000]"]
+
 spawn(function()
  while wait(0) do
    pcall(function()
