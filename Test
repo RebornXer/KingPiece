@@ -3069,7 +3069,7 @@ task.spawn(function()
     game:GetService("RunService").Stepped:Connect(function()
         pcall(function()
             --[World 1]
-              if _G.AutolCODE or _G.AutoFarm or _G.AutoGhostShip or _G.MobAura or _G.AutoTengu or _G.AutoLucidus or _G.AutoHydra or _G.AutoBoss or _G.AutoSantaEvents or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma then
+              if _G.AutoBushido or _G.AutolCODE or _G.AutoFarm or _G.AutoGhostShip or _G.MobAura or _G.AutoTengu or _G.AutoLucidus or _G.AutoHydra or _G.AutoBoss or _G.AutoSantaEvents or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma then
 
 if syn or not syn then
 					setfflag("HumanoidParallelRemoveNoPhysics", "False")
@@ -3110,7 +3110,7 @@ end)
     
     spawn(function()
         while wait() do
-            if _G.AutolCODE or _G.MobAura or _G.AutoTengu or _G.AutoGhostShip or _G.AutoLucidus or _G.AutoHydra or _G.AutoBoss or _G.AutoSantaEvents or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma then
+            if _G.AutoBushido or _G.AutolCODE or _G.MobAura or _G.AutoTengu or _G.AutoGhostShip or _G.AutoLucidus or _G.AutoHydra or _G.AutoBoss or _G.AutoSantaEvents or _G.AutoSecondSea or _G.AutoXmas or _G.AutoSeaking or _G.AutoBigMomBlade or _G.AutoBigMomBoss or _G.AutoKaido or _G.AutoSaber or _G.AutoKillply or _G.AutoFarm or _G.AutoBisento or _G.AutoFarmDungeon or _G.AutoKillply or _G.AutoEnma then
                 pcall(function()
                     game:GetService("Players").LocalPlayer.Character.Services.Client.KenEvent:InvokeServer(true)
                 end)
@@ -3461,9 +3461,9 @@ end
 local Swordn = game:GetService("Players").LocalPlayer.PlayerStats.SwordName.Value
 
 spawn(function()
-    while wait() do
+    while wait(0) do
         pcall(function()
-            if _G.AutolCODE or _G.AutoLucidus or _G.AutoSaber or _G.AutoTengu or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
+            if _G.AutoBushido or _G.AutolCODE or _G.AutoLucidus or _G.AutoSaber or _G.AutoTengu or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
                 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("SW_".._G.SelectWeapon.."_M1")
 end
 end)
@@ -3471,9 +3471,9 @@ end
 end)
                 
 spawn(function()
-    while wait() do
+    while wait(0) do
         pcall(function()
-            if _G.AutolCODE or _G.AutoTengu or _G.AutoSaber or _G.AutoLucidus or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
+            if _G.AutoBushido or _G.AutolCODE or _G.AutoTengu or _G.AutoSaber or _G.AutoLucidus or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("FS_".._G.SelectWeapon.."_M1")
 end
 end)
@@ -3564,8 +3564,34 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
         end
     end)
     end
-    Main:AddSeperatorLeft("Passive tree")
-   Main:AddToggleLeft("Teleport To Passive Tree",nil,function(a)
+    Main:AddSeperatorLeft("Update 6 Soon")
+Main:AddToggleLeft("Auto Bushido Ape",_G.AutoBushido,function(a)
+_G.AutoBushido = a
+end)
+game:GetService("Workspace").Monster.Boss["Bushido Ape [Lv. 5000]"]
+spawn(function()
+ while wait(0) do
+   pcall(function()
+     if _G.AutoBushido then
+         if game:GetService("Workspace").Monster.Boss:FindFirstChild("Bushido Ape [Lv. 5000]") then
+                                    for i,v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do
+                                        if v.Name == "Bushido Ape [Lv. 5000]" and v.Humanoid.Health > 0 then
+                                            repeat task.wait()
+                                                AutoHaki()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                TP(v.HumanoidRootPart.CFrame * MethodFarm)
+                                            until _G.AutoKaido == false or v.Humanoid.Health <= 0
+                                        end
+                                    end
+                                else
+                                    if not game:GetService("ReplicatedStorage").MOB:FindFirstChild("Bushido Ape [Lv. 5000]") then
+                                        TP(game:GetService("ReplicatedStorage").MOB:FindFirstChild("").HumanoidRootPart.CFrame * MethodFarm)
+                                    end
+                                end)
+                            end 
+end)
+
+Main:AddToggleLeft("Teleport To Passive Tree",nil,function(a)
 TP(game:GetService("Workspace").AllNPC.PassiveTree.CFrame)
 end)
 Main:AddSeperatorLeft("mOB aURA")
@@ -4272,12 +4298,20 @@ ItamList = {
 "Bisento"
 }
 
-   Main:AddDropdownLeft("Select Method",itamList,function(value)
-        _G.Method = value
+   Main:AddDropdownLeft("Select Method",ItamList,function(value)
+        _G.itamSelect = value
     end)
-    Main:AddToggleLeft("Auto Big Mom Blade",_G.AutoBigMomBlade,function(value)
-        _G.AutoBigMomBlade = value
-        StopNoClip(_G.AutoBigMomBlade)
+    Main:AddToggleLeft("Auto Item",_G.AutoItem,function(value)
+        _G.AutoItem = value
+         if ItamList == "Big Mom Blade" then
+           _G.AutoBigMomBlade = true
+         elseif ItamList == "Bisento" then
+           _G.AutoBisento = true
+else
+    _G.AutoBisento = false
+    _G.AutoBigMomBlade = false
+end
+        StopNoClip()
     end)
     
     spawn(function()
@@ -4345,12 +4379,6 @@ game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Funct
         end
     end)
    
-    
-    Main:AddToggleLeft("Auto Bisento",_G.AutoBisento,function(value)
-        _G.AutoBisento = value
-        StopNoClip(_G.AutoBisento)
-    end)
-    
     spawn(function()
         while wait() do
             if _G.AutoBisento then
