@@ -3322,8 +3322,7 @@ end)
             if _G.AutoSeaking then
                 pcall(function()
 for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do        
-                        if game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing") and v.Humanoid.Health > 0 then
-                  
+                        if game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing") and v.Humanoid.Health > 0 then       
   if v.Name == "SeaKing" then
                                 repeat wait()
                                     AutoHaki()
