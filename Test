@@ -3321,8 +3321,9 @@ end)
         while wait() do
             if _G.AutoSeaking then
                 pcall(function()
+for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do        
                         if game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing") and v.Humanoid.Health > 0 then
-for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do                          
+                  
   if v.Name == "SeaKing" then
                                 repeat wait()
                                     AutoHaki()
@@ -3383,8 +3384,9 @@ Main:AddToggleLeft("Auto Hydra",_G.AutoHydra,function(value)
         while wait() do
             if _G.AutoHydra then
                 pcall(function()
+for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do
                         if game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") and v.Humanoid.Health > 0 then
-                            for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do
+                            
                             if v.Name == "HydraSeaKing" then
                                 repeat wait()
                                     AutoHaki()
