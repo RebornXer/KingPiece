@@ -3282,8 +3282,8 @@ end)
 end
 end)
                 
-spawn(function(0)
-    while wait() do
+spawn(function()
+    while wait(0) do
         pcall(function()
             if _G.AutolCODE or _G.AutoTengu or _G.AutoSaber or _G.AutoLucidus or _G.MobAura or _G.AutoFarmDungeon or _G.AutoFarm or _G.AutoKaido or _G.AutoBoss or _G.AutoGhostShip or _G.AutoSeaking or _G.AutoEnma or _G.AutoBisento or _G.AutoBigMomBoss or _G.AutoHydra then
 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("FS_".._G.SelectWeapon.."_M1")
