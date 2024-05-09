@@ -1,4 +1,4 @@
------0.5
+-----0.6
 
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
@@ -3062,12 +3062,16 @@ end)
 Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
     Select_Weapon = value
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+    local MeleeSelect = playerStats.FightingStyle.Value
+    local SwordSelect = playerStats.SwordName.Value
+    local FruitSelect = playerStats.DFName.Value 
+
     if Select_Weapon == "Melee" then
-        playerStats.FightingStyle.Value = value
+        MeleeSelect
     elseif Select_Weapon == "Sword" then
-        playerStats.SwordName.Value = value
+        SwordSelect
     elseif Select_Weapon == "Fruit" then
-        playerStats.DFName.Value = value
+        FruitSelect
     end
 end)
 
