@@ -3001,16 +3001,16 @@ end)
 Main:AddToggleLeft("Auto Ghost Ship",Auto_Ghost_Ship,function(a)
     Auto_Ghost_Ship = a
 end)
-
 spawn(function()
     while wait() do
         pcall(function()
-        if Auto_Ghost_Ship then
-            
-                if game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
-                    for i,v in pairs(game:GetService("Workspace"):FindFirstChild("GhostMonster"):GetChildren()) do
-                        if v.Name == "Ghost Ship" and v.Humanoid.Health > 0 then
-                            repeat wait()
+            if Auto_Ghost_Ship then
+                local ghostShip = game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship")
+                if ghostShip then
+                    for i,v in pairs(game:GetService("Workspace").GhostMonster:GetChildren()) do
+                        if v == ghostShip and v.Humanoid.Health > 0 then
+                            repeat
+                                wait()
                                 AutoHaki()
                                 EquipWeapon(_G.SelectWeapon)
                                 TP(v.HumanoidRootPart.CFrame * CFrame.new(0,10,0))
@@ -3023,22 +3023,19 @@ spawn(function()
                             until v.Humanoid.Health <= 0 or not Auto_Ghost_Ship or not game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") or game:GetService("Workspace"):FindFirstChild("Chest1")
                         end
                     end
-                else
-                    if game:GetService("Workspace"):FindFirstChild("Chest1") then
-                        for Dh,oh in pairs(game.Workspace:GetChildren())do 
-                        if oh.Name:find("Chest")then 
-                            TP(oh.PrimaryPart.CFrame)
-                            wait(0.3);
-                        end;
-                    end;
-
+                elseif game:GetService("Workspace"):FindFirstChild("Chest1") then
+                    for _, chest in pairs(game.Workspace:GetChildren()) do 
+                        if chest.Name:find("Chest") then 
+                            TP(chest.PrimaryPart.CFrame)
+                            wait(0.3)
                         end
                     end
-                
+                end
             end
         end)
     end
 end)
+
 Main:AddToggleLeft("Auto Ghost Ship Hop",Auto_Ghost_Ship_Hop,function(a)
     Auto_Ghost_Ship_Hop = a
 end)
