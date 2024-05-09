@@ -2809,7 +2809,310 @@ end)
     Main:AddLabelLeft("Map : King Legazy")
     Date = os.date("%d".." ".."%B".." ".."%Y")
     Main:AddLabelLeft("Day : "..Date)
+   
+ Main:AddSeperatorLeft("Main")
+
+Main:AddToggleLeft("Auto Farm",Auto_Farm,function(a)
+Auto_Farm = a
+end)
+
+
+spawn(function()
+ while wait() do
+    pcall(function()
+      if Auto_Farm then
+      end
+      end)
+  end
+end)
+
+Main:AddSeperatorLeft("World Quest")
+
+Main:AddToggleLeft("Auto Sea Two",Auto_Sea_Two,function(a)
+    Auto_Sea_Two = a
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if Auto_Sea_Two then
+                
+            end
+    end)
+end
+end)
+
+Main:AddToggleLeft("Auto Sea thi")
+
+Main:AddSeperatorLeft("Sea Event")
+Hydra = Main:AddLabelLeft("")
+  
+
+             function HydraSent()
+    		if game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") then
+              Hydra:Set("Hydra : ✔")   
+                else
+                    Hydra:Set("Hydra : ✖")    
+                end
+                end
+
+         spawn(function()
+        while task.wait() do
+            pcall(function()
+                HydraSent()
+            end)
+        end
+         end)
+
+Main:AddToggleLeft("Auto Hydra",Auto_Hydra,function(a)
+    Auto_Hydra = a
+end)
+
+spawn(function()
+    while wait() do
+        if Auto_Hydra then
+            pcall(function()
+                for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do
+                    if game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") or v.Humanoid.Health > 0 then
+                        if v.Name == "HydraSeaKing" then
+                            repeat wait()
+                                AutoHaki()
+                                EquipWeapon(_G.SelectWeapon)
+                                TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) * CFrame.new(0,75,0))
+                                if _G.AutoSkill then 
+                                    UseSkill("Z")
+                                    UseSkill("X")
+                                    UseSkill("C")
+                                    UseSkill("V")
+                                end
+                            until v.Humanoid.Health <= 0 or not Auto_Hydra or not game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing")                       
+                        end
+                    else
+                          if game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder").HydraStand.CFrame)
+                        elseif game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Lava").HydraStand.CFrame)
+                        elseif game:GetService("Workspace").Island:FindFirstChild("Sea King Water") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Water").HydraStand.CFrame)
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+Main:AddToggleLeft("Auto Hydra Hop",Auto_Hydra_Hop,function(a)
+    Auto_Hydra_Hop = a
+end)
+
+spawn(function()
+    while wait() do
+        if Auto_Hydra and Auto_Hydra_Hop then
+            pcall(function()
+                if not game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Water") then
+                    wait(3)
+                    Hop()
+                end
+            end)
+        end
+    end
+end)
+
+Seaking = Main:AddLabelLeft("")
+  
+
+function SeaKingSent()
+if  game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") or game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") or game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") or game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
+ Seaking:Set("Seaking : ✔")   
+   else
+       Seaking:Set("Seaking : ✖")    
+   end
+   end
+
+spawn(function()
+while task.wait() do
+pcall(function()
+    SeaKingSent()
+end)
+end
+end)
+
+Main:AddToggleLeft("Auto Sea King",Auto_Sea_King,function(a)
+    Auto_Sea_Kin = a
+end)
+
+spawn(function()
+    while wait() do
+        if Auto_Sea_King then
+            pcall(function()
+                for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do
+                    if game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing") or v.Humanoid.Health > 0 then
+                        if v.Name == "SeaKing" then
+                            repeat wait()
+                                AutoHaki()
+                                EquipWeapon(_G.SelectWeapon)
+                                TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) - Vector3.new(0,25,0))
+                                if _G.AutoSkill then 
+                                    UseSkill("Z")
+                                    UseSkill("X")
+                                    UseSkill("C")
+                                    UseSkill("V")
+                                end
+                            until v.Humanoid.Health <= 0 or not Auto_Sea_King or not game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing")                       
+                        end
+                    else
+                        if game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island1").ChestSpawner.CFrame * CFrame.new(0,0,2))
+                        elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island2").ChestSpawner.CFrame * CFrame.new(0,0,2))
+                        elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island3").ChestSpawner.CFrame * CFrame.new(0,0,2))
+                        elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
+                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island4").ChestSpawner.CFrame * CFrame.new(0,0,2))
+                        
+                   
+             end
+               end
+                end
+            end)
+        end
+    end
+end)
+
+Main:AddToggleLeft("Auto Sea King Hop",Auto_Sea_King_Hop,function(a)
+    Auto_Sea_King_Hop = a
+end)
+
+ 
+spawn(function()
+    while wait() do
+        if Auto_Sea_King and Auto_Sea_King_Hop then
+            pcall(function()
+                if not game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
+                    wait(3)
+                    Hop()
+                end
+            end)
+        end
+    end
+end)
+
+Main:AddToggleLeft("Auto Ghost Ship",Auto_Ghost_Ship,function(a)
+    Auto_Ghost_Ship = a
+end)
+
+spawn(function()
+    while wait() do
+        if Auto_Ghost_Ship then
+            pcall(function()
+                if game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
+                    for i,v in pairs(game:GetService("Workspace"):FindFirstChild("GhostMonster"):GetChildren()) do
+                        if v.Name == "Ghost Ship" and v.Humanoid.Health > 0 then
+                            repeat wait()
+                                AutoHaki()
+                                EquipWeapon(_G.SelectWeapon)
+                                TP(v.HumanoidRootPart.CFrame * CFrame.new(0,10,0))
+                                if _G.AutoSkill then 
+                                    UseSkill("Z")
+                                    UseSkill("X")
+                                    UseSkill("C")
+                                    UseSkill("V")
+                                end
+                            until v.Humanoid.Health <= 0 or not Auto_Ghost_Ship or not game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") or game:GetService("Workspace"):FindFirstChild("Chest1")
+                        end
+                    end
+                else
+                    if game:GetService("Workspace"):FindFirstChild("Chest1") then
+                        for Dh,oh in pairs(game.Workspace:GetChildren())do 
+                        if oh.Name:find("Chest")then 
+                            TP(oh.PrimaryPart.CFrame)
+                            wait(0.3);
+                        end;
+                    end;
+
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+Main:AddToggleLeft("Auto Ghost Ship Hop",Auto_Ghost_Ship_Hop,function(a)
+    Auto_Ghost_Ship_Hop = a
+end)
+
+ 
+
+    spawn(function()
+        while wait() do
+            if Auto_Ghost_Ship and Auto_Ghost_Ship_Hop then
+                pcall(function()
+                    if not game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
+                        wait(3)
+                        Hop()
+                    end
+                end)
+            end
+        end
+    end)
+ then
+            pcall(function()
+                if not game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
+                    wait(3)
+                    Hop()
+                end
+            end)
+        end
+    end
+end)
+
+------------------------------------------------------------------ Right ------------------------------------------------------------------
+
+Wapon = {}
     
+    
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+ if v:IsA("Tool") then
+  table.insert(Wapon,v.Name)
+end
+end
+ 
+
+local SelectWeapon = Main:AddDropdownRight("Select Weapon",Wapon,function(value)
+_G.SelectWeapon = value
+end)
+
+Main:AddButtonRight("Refresh Weapon",function()
+SelectWeapon:Clear()
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+ if v:IsA("Tool") then
+     SelectWeapon:Add(v.Name)
+ end
+end
+end)
+
+Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
+    _G.Method = value
+end)
+
+spawn(function()
+    while wait() do 
+        pcall(function()
+            if _G.Method == "Behind" then
+                MethodFarm = CFrame.new(0,0,DistanceMob)
+            elseif _G.Method == "Below" then
+                MethodFarm = CFrame.new(0,-DistanceMob,0) * CFrame.Angles(math.rad(90),0,0)
+            elseif _G.Method == "Upper" then
+                MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
+            else
+                MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
+            end
+        end)
+    end
+end)
+
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
 _G.Walk_On_Water = a
 if _G.Walk_On_Water then
