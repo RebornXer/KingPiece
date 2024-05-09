@@ -1,4 +1,4 @@
----c
+--0.1
 
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
@@ -3059,27 +3059,22 @@ end)
 
 ------------------------------------------------------------------ Right ------------------------------------------------------------------
 
-Wapon = {}
-    
-    
-for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
- if v:IsA("Tool") then
-  table.insert(Wapon,v.Name)
-end
-end
+Wapon = {Melee,Sword,Fruit}
  
 
-local SelectWeapon = Main:AddDropdownRight("Select Weapon",Wapon,function(value)
-_G.SelectWeapon = value
+Main:AddDropdownRight("Select Weapon",Wapon,function(value)
+Select_Weapon = value
+if Select_Weapon == "Melee" then
+    game:GetService("Players").LocalPlayer.PlayerStats.FightingStyle.Value
+elseif Select_Weapon == "Sword" then
+    game:GetService("Players").LocalPlayer.PlayerStats.SwordName.Value
+elseif Select_Weapon == "Fruit" then
+    game:GetService("Players").LocalPlayer.PlayerStats.DFName.Value
+end
 end)
 
-Main:AddButtonRight("Refresh Weapon",function()
-SelectWeapon:Clear()
-for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
- if v:IsA("Tool") then
-     SelectWeapon:Add(v.Name)
- end
-end
+Main:AddButtonLeft("Test",function()
+    print(Select_Weapon)
 end)
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
