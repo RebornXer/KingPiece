@@ -3030,15 +3030,16 @@ spawn(function()
                             wait(0.3);
                         end;
                     end;
-
+                    else
+                        if _G.AutoGhostShip_Hop then
+                            Hop()
                         end
                     end
-                
+                end
             end)
         end
     end
 end)
-
 Main:AddToggleLeft("Auto Ghost Ship Hop",Auto_Ghost_Ship_Hop,function(a)
     Auto_Ghost_Ship_Hop = a
 end)
