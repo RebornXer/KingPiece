@@ -1,5 +1,3 @@
-----0.2
-
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -3062,16 +3060,18 @@ end)
 Wapon = {"Melee","Sword","Fruit"}
  
 
-Main:AddDropdownRight("Select Weapon",Wapon,function(value)
-Select_Weapon = value
-if Select_Weapon == "Melee" then
-    game:GetService("Players").LocalPlayer.PlayerStats.FightingStyle.Value
-elseif Select_Weapon == "Sword" then
-    game:GetService("Players").LocalPlayer.PlayerStats.SwordName.Value
-elseif Select_Weapon == "Fruit" then
-    game:GetService("Players").LocalPlayer.PlayerStats.DFName.Value
-end
+Main:AddDropdownRight("Select Weapon", Weapon, function(value)
+    Select_Weapon = value
+    local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+    if Select_Weapon == "Melee" then
+        playerStats.FightingStyle.Value
+    elseif Select_Weapon == "Sword" then
+        playerStats.SwordName.Value
+    elseif Select_Weapon == "Fruit" then
+        playerStats.DFName.Value
+    end
 end)
+
 
 Main:AddButtonLeft("Test",function()
     print(Select_Weapon)
