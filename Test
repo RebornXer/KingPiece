@@ -1,5 +1,3 @@
---0.1
-
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -3059,7 +3057,7 @@ end)
 
 ------------------------------------------------------------------ Right ------------------------------------------------------------------
 
-Wapon = {Melee,Sword,Fruit}
+Wapon = {"Melee","Sword","Fruit"}
  
 
 Main:AddDropdownRight("Select Weapon",Wapon,function(value)
