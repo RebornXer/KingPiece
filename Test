@@ -3061,11 +3061,11 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
     Select_Weapon = value
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
     if Select_Weapon == "Melee" then
-        tostring(playerStats.FightingStyle.Value)
+        playerStats.FightingStyle.Value = value
     elseif Select_Weapon == "Sword" then
-        tostring(playerStats.SwordName.Value)
+        playerStats.SwordName.Value = value
     elseif Select_Weapon == "Fruit" then
-        tostring(playerStats.DFName.Value)
+        playerStats.DFName.Value = value
     end
 end)
 
