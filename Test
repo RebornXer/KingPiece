@@ -3054,16 +3054,6 @@ end)
             end
         end
     end)
- then
-            pcall(function()
-                if not game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") or not game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
-                    wait(3)
-                    Hop()
-                end
-            end)
-        end
-    end
-end)
 
 ------------------------------------------------------------------ Right ------------------------------------------------------------------
 
