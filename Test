@@ -2841,6 +2841,7 @@ spawn(function()
 			pcall(function()
 				if game:GetService("Workspace").PlayerCharacters.NamePlayer.Services.KenOpen.Value == false then
 				game:GetService("Players").LocalPlayer.Character.Services.Client.KenEvent:InvokeServer(true)
+				end
 			end) 
 		end
 	end
