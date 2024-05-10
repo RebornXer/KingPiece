@@ -1,5 +1,3 @@
---0.7
-
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -3069,14 +3067,19 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
     Select_Weapon = value
     print("Selected Weapon:", Select_Weapon) -- พิมพ์ค่า value ที่ถูกเลือก
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+    
     if Select_Weapon == "Melee" then
         MeleeSelect = playerStats.FightingStyle.Value
+		print("DFName Value:", playerStats.FightingStyle.Value) -- พิมพ์ค่า DFName.Value จาก playerStats
     elseif Select_Weapon == "Sword" then
         SwordSelect = playerStats.SwordName.Value
+		print("DFName Value:", playerStats.SwordName.Value) -- พิมพ์ค่า DFName.Value จาก playerStats
     elseif Select_Weapon == "Fruit" then
         FruitSelect = playerStats.DFName.Value 
+		print("DFName Value:", playerStats.DFName.Value) -- พิมพ์ค่า DFName.Value จาก playerStats
     end
 end)
+
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
 _G.Walk_On_Water = a
