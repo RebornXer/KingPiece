@@ -1,5 +1,3 @@
------0.6
-
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -3062,9 +3060,9 @@ end)
 Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
     Select_Weapon = value
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-    local MeleeSelect = playerStats.FightingStyle.Value
-    local SwordSelect = playerStats.SwordName.Value
-    local FruitSelect = playerStats.DFName.Value 
+     MeleeSelect = playerStats.FightingStyle.Value
+    SwordSelect = playerStats.SwordName.Value
+    FruitSelect = playerStats.DFName.Value 
 
     if Select_Weapon == "Melee" then
         MeleeSelect
@@ -3076,9 +3074,7 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
 end)
 
 
-Main:AddButtonLeft("Test",function()
-    print(Select_Weapon)
-end)
+
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     _G.Method = value
@@ -3098,6 +3094,10 @@ spawn(function()
             end
         end)
     end
+end)
+
+Main:AddButtonLeft("Test",function()
+    print(Select_Weapon)
 end)
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
