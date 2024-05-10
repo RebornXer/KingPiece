@@ -1,4 +1,4 @@
-----0.9
+--1.0
 
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
@@ -2865,6 +2865,68 @@ function EquipWeapon(ToolSe)
 	end
 end
 
+function Hop()
+	local PlaceID = game.PlaceId
+	local AllIDs = {}
+	local foundAnything = ""
+	local actualHour = os.date("!*t").hour
+	local Deleted = false
+	function TPReturner()
+		local Site;
+		if foundAnything == "" then
+			Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+		else
+			Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+		end
+		local ID = ""
+		if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+			foundAnything = Site.nextPageCursor
+		end
+		local num = 0;
+		for i,v in pairs(Site.data) do
+			local Possible = true
+			ID = tostring(v.id)
+			if tonumber(v.maxPlayers) > tonumber(v.playing) then
+				for _,Existing in pairs(AllIDs) do
+					if num ~= 0 then
+						if ID == tostring(Existing) then
+							Possible = false
+						end
+					else
+						if tonumber(actualHour) ~= tonumber(Existing) then
+							local delFile = pcall(function()
+								AllIDs = {}
+								table.insert(AllIDs, actualHour)
+							end)
+						end
+					end
+					num = num + 1
+				end
+				if Possible == true then
+					table.insert(AllIDs, ID)
+					wait()
+					pcall(function()
+						wait()
+						game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+					end)
+					wait(4)
+				end
+			end
+		end
+	end
+	function Teleport() 
+		while wait() do
+			pcall(function()
+				TPReturner()
+				if foundAnything ~= "" then
+					TPReturner()
+				end
+			end)
+		end
+	end
+	Teleport()
+end
+
 ------------------------------------------------- Ui ----------------------------------------------------------
 
 local RenUi = Update:AddWindow("RebornXer Hub","10039618734",Enum.KeyCode.RightControl)
@@ -2944,33 +3006,34 @@ Hydra = Main:AddLabelLeft("")
 Main:AddToggleLeft("Auto Hydra",Auto_Hydra,function(a)
     Auto_Hydra = a
 end)
-
 spawn(function()
-    while wait() do
+    while wait(0) do
         if Auto_Hydra then
             pcall(function()
                 for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do
-                    if game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") or v.Humanoid.Health > 0 then
-                        if v.Name == "HydraSeaKing" then
-                            repeat wait()
-                                AutoHaki()
-                                EquipWeapon(WeaPon_Select)
-                                TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) * CFrame.new(0,75,0))
-                                if _G.AutoSkill then 
-                                    UseSkill("Z")
-                                    UseSkill("X")
-                                    UseSkill("C")
-                                    UseSkill("V")
-                                end
-                            until v.Humanoid.Health <= 0 or not Auto_Hydra or not game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing")                       
-                        end
-                    else
-                          if game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder").HydraStand.CFrame)
-                        elseif game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Lava").HydraStand.CFrame)
-                        elseif game:GetService("Workspace").Island:FindFirstChild("Sea King Water") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Water").HydraStand.CFrame)
+                    if v.Name == "HydraSeaKing" then
+                        repeat wait(0)
+                            AutoHaki()
+                            EquipWeapon(WeaPon_Select)
+                            TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) * CFrame.new(0,75,0))
+                            if _G.AutoSkill then 
+                                UseSkill("Z")
+                                UseSkill("X")
+                                UseSkill("C")
+                                UseSkill("V")
+                            end
+                        until v.Humanoid.Health <= 0 or not Auto_Hydra or not game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing")                       
+                    end
+                end
+
+                -- ตรวจสอบสถานะของ Sea King และทำการเลือกที่จะ TP ไปยังสถานที่เหมาะสม
+                if not game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") then
+                    local seaKingTypes = {"Sea King Thunder", "Sea King Lava", "Sea King Water"}
+                    for _, seaKingType in ipairs(seaKingTypes) do
+                        local seaKing = game:GetService("Workspace").Island:FindFirstChild(seaKingType)
+                        if seaKing then
+                            TP(seaKing.HydraStand.CFrame)
+                            break
                         end
                     end
                 end
@@ -2978,6 +3041,7 @@ spawn(function()
         end
     end
 end)
+
 
 Main:AddToggleLeft("Auto Hydra Hop",Auto_Hydra_Hop,function(a)
     Auto_Hydra_Hop = a
@@ -3020,42 +3084,43 @@ Main:AddToggleLeft("Auto Sea King",Auto_Sea_King,function(a)
 end)
 
 spawn(function()
-    while wait() do
+    while wait(0) do
         if Auto_Sea_King then
             pcall(function()
-                for i,v in pairs(game:GetService("Workspace").SeaMonster:GetChildren()) do
-                    if game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing") or v.Humanoid.Health > 0 then
-                        if v.Name == "SeaKing" then
-                            repeat wait()
+                local seaMonster = game:GetService("Workspace").SeaMonster
+                if seaMonster then
+                    for i, v in pairs(seaMonster:GetChildren()) do
+                        if v.Name == "SeaKing" and v.Humanoid.Health > 0 then
+                            repeat
+                                wait(0)
                                 AutoHaki()
                                 EquipWeapon(WeaPon_Select)
-                                TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) - Vector3.new(0,25,0))
+                                TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) - Vector3.new(0, 25, 0))
                                 if _G.AutoSkill then 
                                     UseSkill("Z")
                                     UseSkill("X")
                                     UseSkill("C")
                                     UseSkill("V")
                                 end
-                            until v.Humanoid.Health <= 0 or not Auto_Sea_King or not game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing")                       
+                            until v.Humanoid.Health <= 0 or not Auto_Sea_King or not seaMonster:FindFirstChild("SeaKing")                      
                         end
-                    else
-                        if game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island1").ChestSpawner.CFrame * CFrame.new(0,0,2))
-                        elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island2").ChestSpawner.CFrame * CFrame.new(0,0,2))
-                        elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island3").ChestSpawner.CFrame * CFrame.new(0,0,2))
-                        elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
-                            TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island4").ChestSpawner.CFrame * CFrame.new(0,0,2))
-                        
-                   
-             end
-               end
+                    end
+                else
+                    -- ตรวจสอบเกาะที่มีชื่อ Legacy Island1, Legacy Island2, Legacy Island3, และ Legacy Island4
+                    local islandNames = {"Legacy Island1", "Legacy Island2", "Legacy Island3", "Legacy Island4"}
+                    for _, islandName in ipairs(islandNames) do
+                        local island = game:GetService("Workspace").Island:FindFirstChild(islandName)
+                        if island then
+                            TP(island.ChestSpawner.CFrame * CFrame.new(0, 0, 2))
+                            break
+                        end
+                    end
                 end
             end)
         end
     end
 end)
+
 
 Main:AddToggleLeft("Auto Sea King Hop",Auto_Sea_King_Hop,function(a)
     Auto_Sea_King_Hop = a
