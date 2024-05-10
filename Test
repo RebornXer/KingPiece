@@ -1,4 +1,4 @@
---1.0
+---1.1
 
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
@@ -3090,7 +3090,7 @@ spawn(function()
                 local seaMonster = game:GetService("Workspace").SeaMonster
                 if seaMonster then
                     for i, v in pairs(seaMonster:GetChildren()) do
-                        if v.Name == "SeaKing" and v.Humanoid.Health > 0 then
+                        if v.Name == "SeaKing" or v.Humanoid.Health > 0 then
                             repeat
                                 wait(0)
                                 AutoHaki()
