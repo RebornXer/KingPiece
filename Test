@@ -1,4 +1,4 @@
---1.2
+--1.3
 
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
@@ -3003,9 +3003,47 @@ Hydra = Main:AddLabelLeft("")
         end
          end)
 
+Main:AddToggleLeft("Hop Mix",Hop_Mix,function(a)
+	Hop_Mix = a
+end)
+
+spawn(function()
+    while wait() do
+        if Hop_Mix and Auto_Hydra and Auto_Sea_King and Auto_Ghost_Ship then
+            pcall(function()
+                if not game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Water") and  not game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") and not game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
+                    wait(8)
+                    Hop()
+                end
+            end)
+        end
+    end
+end)
+
 Main:AddToggleLeft("Auto Hydra",Auto_Hydra,function(a)
     Auto_Hydra = a
 end)
+
+
+spawn(function()
+	while wait() do
+		if Auto_Hydra then
+			pcall(function()
+				if not game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") then
+					   if game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") then
+							TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder").HydraStand.CFrame)
+						elseif game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") then
+						TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Lava").HydraStand.CFrame)
+						elseif game:GetService("Workspace").Island:FindFirstChild("Sea King Water") then
+							TP(game:GetService("Workspace").Island:FindFirstChild("Sea King Water").HydraStand.CFrame)
+							
+						end
+						end
+				end)
+			end
+	end
+end)
+
 spawn(function()
     while wait(0) do
         if Auto_Hydra then
@@ -3083,6 +3121,26 @@ Main:AddToggleLeft("Auto Sea King",Auto_Sea_King,function(a)
     Auto_Sea_King = a
 end)
 
+
+spawn(function()
+	while wait() do
+		if Auto_Sea_King then
+			pcall(function()
+				if not game:GetService("Workspace").SeaMonster:FindFirstChild("SeaKing") then
+						if game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") then
+							TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island1").ChestSpawner.CFrame * CFrame.new(0,0,2))
+						elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") then
+							TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island2").ChestSpawner.CFrame * CFrame.new(0,0,2))
+						elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") then
+							TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island3").ChestSpawner.CFrame * CFrame.new(0,0,2))
+						elseif game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") then
+							TP(game:GetService("Workspace").Island:FindFirstChild("Legacy Island4").ChestSpawner.CFrame * CFrame.new(0,0,2))
+						end
+						end
+				end)
+			end
+	end
+end)
 
 spawn(function()
     while wait(0) do
