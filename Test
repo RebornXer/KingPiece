@@ -2832,8 +2832,8 @@ spawn(function()
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
                     Noclip.Parent = humanoidRootPart
-                    Noclip.MaxForce = Vector3.new(3, 3, 3)
-                    Noclip.Velocity = Vector3.new(3, 3, 3)
+                    Noclip.MaxForce = Vector3.new(10000, 10000, 10000)
+                    Noclip.Velocity = Vector3.new(0, 0, 0)
                 else
                     noclip:Destroy()
                 end
@@ -2952,7 +2952,7 @@ function UseSkill(skill)
 	local args = {
 		[1] = tostring(TypeWeapon) .. "_" .. tostring(WeaPon_Select) .. "_" .. tostring(skill), -- ใส่ค่าตัวแปรเข้าไปใน string โดยตรง
 		[2] = {
-			["MouseHit"] = v.HumanoidRootPart.CFrame, -- ไม่จำเป็นต้องใส่ CFrame.new เนื่องจากเรากำหนดค่าให้แล้ว
+			["MouseHit"] = CFrame.new(v.HumanoidRootPart.CFrame), -- ไม่จำเป็นต้องใส่ CFrame.new เนื่องจากเรากำหนดค่าให้แล้ว
 			["Type"] = "Down"
 		}
 	}
@@ -2962,7 +2962,7 @@ function UseSkill(skill)
 		local args = {
 			[1] = tostring(TypeWeapon) .. "_" .. tostring(WeaPon_Select) .. "_" .. tostring(skill), -- ใส่ค่าตัวแปรเข้าไปใน string โดยตรง
 			[2] = {
-				["MouseHit"] = v.HumanoidRootPart.CFrame, -- ไม่จำเป็นต้องใส่ CFrame.new เนื่องจากเรากำหนดค่าให้แล้ว
+				["MouseHit"] = CFrame.new(v.HumanoidRootPart.CFrame), -- ไม่จำเป็นต้องใส่ CFrame.new เนื่องจากเรากำหนดค่าให้แล้ว
 				["Type"] = "Up"
 			}
 		}
