@@ -3006,6 +3006,25 @@ end)
 Main:AddToggleLeft("Auto Sea thi")
 
 Main:AddSeperatorLeft("Sea Event")
+
+Main:AddToggleLeft("Hop Mix",Hop_Mix,function(a)
+	Hop_Mix = a
+end)
+
+spawn(function()
+    while wait() do
+        if Hop_Mix and Auto_Hydra and Auto_Sea_King and Auto_Ghost_Ship then
+            pcall(function()
+                if not game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Water") and  not game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") and not game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
+                    wait(8)
+                    Hop()
+                end
+            end)
+        end
+    end
+end)
+
+
 Hydra = Main:AddLabelLeft("")
   
 
@@ -3025,22 +3044,6 @@ Hydra = Main:AddLabelLeft("")
         end
          end)
 
-Main:AddToggleLeft("Hop Mix",Hop_Mix,function(a)
-	Hop_Mix = a
-end)
-
-spawn(function()
-    while wait() do
-        if Hop_Mix and Auto_Hydra and Auto_Sea_King and Auto_Ghost_Ship then
-            pcall(function()
-                if not game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") and not game:GetService("Workspace").Island:FindFirstChild("Sea King Water") and  not game:GetService("Workspace").Island:FindFirstChild("Legacy Island1") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island2") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island3") and not game:GetService("Workspace").Island:FindFirstChild("Legacy Island4") and not game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
-                    wait(8)
-                    Hop()
-                end
-            end)
-        end
-    end
-end)
 
 Main:AddToggleLeft("Auto Hydra",Auto_Hydra,function(a)
     Auto_Hydra = a
@@ -3317,12 +3320,132 @@ end)
 
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
-    _G.Method = value
+    Select_Method = value
+end)
+
+spawn(function()
+	while wait() do 
+		pcall(function()
+			if Select_Method == "Behind" then
+				MethodFarm = CFrame.new(0,0,DistanceMob)
+			elseif Select_Method == "Below" then
+				MethodFarm = CFrame.new(0,-DistanceMob,0) * CFrame.Angles(math.rad(90),0,0)
+			elseif Select_Method == "Upper" then
+				MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
+			else
+				MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
+			end
+		end)
+	end
+end)
+
+Main:AddSliderRight("Distance",,1,100,10,function(value)
+	DistanceMob = value
 end)
 
 Main:AddToggleRight("Auto Skill",Auto_Skill,function(a)
 	Auto_Skill = a
 end)
+
+Main:AddToggleRight("Black Screen",Black_Screen,function(a)
+	Black_Screen = a
+	if Black_Screen == true then
+		game:GetService("RunService"):Set3dRenderingEnabled(false)
+		wait()
+		blackscreen(true)
+	elseif Black_Screen == false then
+		game:GetService("RunService"):Set3dRenderingEnabled(true)
+		blackscreen(false)
+	end
+end)
+
+local player = game:GetService("Players").LocalPlayer
+
+local blackscreen = function(enable)
+    local playerGui = player:WaitForChild("PlayerGui")
+    if not enable then
+        local sUi = playerGui:FindFirstChild("Blackscreen")
+        if sUi then sUi:Destroy() end
+        return
+    elseif playerGui:FindFirstChild("Blackscreen") then
+        return
+    end
+    local sUi = Instance.new("ScreenGui", playerGui)
+    sUi.Name = "Blackscreen"
+    sUi.DisplayOrder = -727
+
+    local uiFrame = Instance.new("Frame", sUi)
+    uiFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    uiFrame.Size = UDim2.new(0, 72727, 0, 72727)
+    uiFrame.Position = UDim2.new(0, 0, -5, 0)
+end
+
+Main:AddSeperatorRight("Auto Stats")
+    
+Main:AddToggleRight("Auto Defense",Auto_Defense,function(value)
+	Auto_Defense = value
+end)
+
+spawn(function()
+	while wait() do
+		if Auto_Defense then
+			if game:GetService("Players")["LocalPlayer"].PlayerStats.Points.Value ~= 0 then
+				pcall(function()
+					game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer("Defense",PointStats)
+				end)
+			end
+		end
+	end
+end)
+
+Main:AddToggleRight("Auto Melee",Auto_Melee,function(value)
+	Auto_Melee = value
+end)
+
+spawn(function()
+	while wait() do
+		if Auto_Melee then
+			if game:GetService("Players")["LocalPlayer"].PlayerStats.Points.Value ~= 0 then
+				pcall(function()
+					game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer("Melee",PointStats)
+				end)
+			end
+		end
+	end
+end)
+
+Main:AddToggleRight("Auto Sword",Auto_Sword,function(value)
+	Auto_Sword = value
+end)
+
+spawn(function()
+	while wait() do
+		if Auto_Sword then
+			if game:GetService("Players")["LocalPlayer"].PlayerStats.Points.Value ~= 0 then
+				pcall(function()
+					game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer("Sword",PointStats)
+				end)
+			end
+		end
+	end
+end)
+
+Main:AddToggleRight("Auto Devil Fruit",Auto_Devil_Fruit,function(value)
+	Auto_Devil_Fruit = value
+end)
+
+spawn(function()
+	while wait() do
+		if Auto_Devil_Fruit then
+			if game:GetService("Players")["LocalPlayer"].PlayerStats.Points.Value ~= 0 then
+				pcall(function()
+					game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer("Devil Fruit",PointStats)
+				end)
+			end
+		end
+	end
+end)
+
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
 _G.Walk_On_Water = a
