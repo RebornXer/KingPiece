@@ -2928,7 +2928,7 @@ end
 function UseSkill(skill)
 	Tool = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool")
 	local args = {
-		[1] = ""...TypeWeapon..."_"...WeaPon_Select..."_"...skill..."",
+		[1] = TypeWeapon..."_"...WeaPon_Select..."_"...skill,
 		[2] = {
 			["MouseHit"] = CFrame.new(v.HumanoidRootPart.CFrame),
 			["Type"] = "Down"
@@ -2938,7 +2938,7 @@ function UseSkill(skill)
 	game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Functions"):WaitForChild("SkillAction"):InvokeServer(unpack(args))
 	task.wait()
 	local args = {
-		[1] = ""...TypeWeapon..."_"...WeaPon_Select..."_"...skill..."",
+		[1] = TypeWeapon..."_"...WeaPon_Select..."_"...skill,
 		[2] = {
 			["MouseHit"] = CFrame.new(v.HumanoidRootPart.CFrame),
 			["Type"] = "Up"
