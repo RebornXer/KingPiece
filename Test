@@ -2792,15 +2792,17 @@ end
 --------------------------------------------- Function ----------------------------------------------
 
 spawn(function()
-    while wait(0) do
+    while true do
         pcall(function()
             if Auto_Click or Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then         
                 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("SW_"..WeaPon_Select.."_M1")
                 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("FS_"..WeaPon_Select.."_M1")
-end
+            end
+        end)
+        wait(0.1) -- ปรับค่าเวลาที่รอเป็น 0.1 วินาที (หรือค่าที่ต้องการ)
+    end
 end)
-end
-end)
+
 
 function TP(pos)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
@@ -2818,22 +2820,28 @@ function AutoHaki()
 end
 
 spawn(function()
-	pcall(function()
-		while wait(0) do
-		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
-			if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-					local Noclip = Instance.new("BodyVelocity")
-					Noclip.Name = "BodyClip"
-					Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-					Noclip.MaxForce = Vector3.new(3,3,3)
-					Noclip.Velocity = Vector3.new(3,3,3)
-		else
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-		end	
-		end
-		end
-	end)
+    pcall(function()
+        while true do
+            wait() -- รอเวลาโดยไม่ระบุ
+
+            if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
+                local humanoidRootPart = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+                local noclip = humanoidRootPart:FindFirstChild("BodyClip")
+
+                if not noclip then
+                    local Noclip = Instance.new("BodyVelocity")
+                    Noclip.Name = "BodyClip"
+                    Noclip.Parent = humanoidRootPart
+                    Noclip.MaxForce = Vector3.new(3, 3, 3)
+                    Noclip.Velocity = Vector3.new(3, 3, 3)
+                else
+                    noclip:Destroy()
+                end
+            end
+        end
+    end)
 end)
+
 
 spawn(function()
 	while wait() do
@@ -2856,10 +2864,18 @@ spawn(function()
 						v.CanCollide = false    
 					end
 				end
+			else
+				for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+					if v:IsA("BasePart") then
+						v.CanCollide = true    
+					end
+				end
 			end
 		end)
 	end)
 end)
+
+
 
 function EquipWeapon(ToolSe)
 	if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
@@ -2934,7 +2950,7 @@ end
 function UseSkill(skill)
 	Tool = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool")
 	local args = {
-		[1] = TypeWeapon.."_"..WeaPon_Select.."_"..skill, -- ใส่ค่าตัวแปรเข้าไปใน string โดยตรง
+		[1] = tostring(TypeWeapon) .. "_" .. tostring(WeaPon_Select) .. "_" .. tostring(skill), -- ใส่ค่าตัวแปรเข้าไปใน string โดยตรง
 		[2] = {
 			["MouseHit"] = v.HumanoidRootPart.CFrame, -- ไม่จำเป็นต้องใส่ CFrame.new เนื่องจากเรากำหนดค่าให้แล้ว
 			["Type"] = "Down"
@@ -2944,7 +2960,7 @@ function UseSkill(skill)
 	game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Functions"):WaitForChild("SkillAction"):InvokeServer(unpack(args))
 		task.wait()
 		local args = {
-			[1] = TypeWeapon.."_"..WeaPon_Select.."_"..skill, -- ใส่ค่าตัวแปรเข้าไปใน string โดยตรง
+			[1] = tostring(TypeWeapon) .. "_" .. tostring(WeaPon_Select) .. "_" .. tostring(skill), -- ใส่ค่าตัวแปรเข้าไปใน string โดยตรง
 			[2] = {
 				["MouseHit"] = v.HumanoidRootPart.CFrame, -- ไม่จำเป็นต้องใส่ CFrame.new เนื่องจากเรากำหนดค่าให้แล้ว
 				["Type"] = "Up"
