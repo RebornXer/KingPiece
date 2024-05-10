@@ -1,3 +1,5 @@
+----0.9
+
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -2792,15 +2794,78 @@ end
 --------------------------------------------- Function ----------------------------------------------
 
 spawn(function()
-    while wait() do
+    while wait(0) do
         pcall(function()
-            if Auto_Click or Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_Kin then         
+            if Auto_Click or Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then         
                 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("SW_"..WeaPon_Select.."_M1")
                 game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("FS_"..WeaPon_Select.."_M1")
 end
 end)
 end
 end)
+
+function TP(pos)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end
+
+ 
+function AutoHaki()
+	pcall(function()
+		if game.Players.LocalPlayer.Character.Haki.Value ~= 1 then
+			game:GetService("Players").LocalPlayer.Character.Services.Client.Armament:FireServer()
+			wait(6)
+		end
+	end)
+end
+
+spawn(function()
+	pcall(function()
+		while wait() do
+		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
+					local Noclip = Instance.new("BodyVelocity")
+					Noclip.Name = "BodyClip"
+					Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+					Noclip.MaxForce = Vector3.new(1,1,1)
+					Noclip.Velocity = Vector3.new(0,0,0)
+				
+			end
+		end
+	end)
+end)
+
+spawn(function()
+	while wait() do
+		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
+			pcall(function()
+				game:GetService("Players").LocalPlayer.Character.Services.Client.KenEvent:InvokeServer(true)
+			end)
+		end
+	end
+end)
+
+spawn(function()
+	pcall(function()
+		game:GetService("RunService").Stepped:Connect(function()
+			if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
+				for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+					if v:IsA("BasePart") then
+						v.CanCollide = false    
+					end
+				end
+			end
+		end)
+	end)
+end)
+
+function EquipWeapon(ToolSe)
+	if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
+		getgenv().tool = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
+		wait()
+		game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+	end
+end
+
+------------------------------------------------- Ui ----------------------------------------------------------
 
 local RenUi = Update:AddWindow("RebornXer Hub","10039618734",Enum.KeyCode.RightControl)
 local Main = RenUi:AddTab("Auto Farm","6026568198")
@@ -2861,7 +2926,7 @@ Hydra = Main:AddLabelLeft("")
   
 
              function HydraSent()
-    		if game:GetService("Workspace").SeaMonster:FindFirstChild("HydraSeaKing") then
+				if game:GetService("Workspace").Island:FindFirstChild("Sea King Thunder") or game:GetService("Workspace").Island:FindFirstChild("Sea King Lava") or game:GetService("Workspace").Island:FindFirstChild("Sea King Water") then
               Hydra:Set("Hydra : ✔")   
                 else
                     Hydra:Set("Hydra : ✖")    
@@ -2889,7 +2954,7 @@ spawn(function()
                         if v.Name == "HydraSeaKing" then
                             repeat wait()
                                 AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
+                                EquipWeapon(WeaPon_Select)
                                 TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) * CFrame.new(0,75,0))
                                 if _G.AutoSkill then 
                                     UseSkill("Z")
@@ -2963,7 +3028,7 @@ spawn(function()
                         if v.Name == "SeaKing" then
                             repeat wait()
                                 AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
+                                EquipWeapon(WeaPon_Select)
                                 TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) - Vector3.new(0,25,0))
                                 if _G.AutoSkill then 
                                     UseSkill("Z")
@@ -3010,6 +3075,25 @@ spawn(function()
     end
 end)
 
+GhostShip = Main:AddLabelLeft("")
+  
+
+             function GhostShipSent()
+    		if game:GetService("Workspace").GhostMonster:FindFirstChild("Ghost Ship") then
+              GhostShip:Set("Ghost Ship : ✔")   
+                else
+                    GhostShip:Set("Ghost Ship : ✖")    
+                end
+                end
+
+         spawn(function()
+        while task.wait() do
+            pcall(function()
+                GhostShipSent()
+            end)
+        end
+         end)
+
 Main:AddToggleLeft("Auto Ghost Ship",Auto_Ghost_Ship,function(a)
     Auto_Ghost_Ship = a
 end)
@@ -3024,7 +3108,7 @@ spawn(function()
                             repeat
                                 wait()
                                 AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
+                                EquipWeapon(WeaPon_Select)
                                 TP(v.HumanoidRootPart.CFrame * CFrame.new(0,10,0))
                                 if _G.AutoSkill then 
                                     UseSkill("Z")
