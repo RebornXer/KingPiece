@@ -2808,7 +2808,7 @@ function TP(pos)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 end
  
- local NamePlayer = game:GetService("Players").LocalPlayer.Name
+ local NamePlayer = game.Players.LocalPlayer.Name
  
 function AutoHaki()
 	pcall(function()
@@ -2821,8 +2821,7 @@ end
 
 spawn(function()
     pcall(function()
-        while true do
-            wait() -- รอเวลาโดยไม่ระบุ
+        while true do -- รอเวลาโดยไม่ระบุ
 
             if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
                 local humanoidRootPart = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
