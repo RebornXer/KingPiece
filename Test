@@ -2821,12 +2821,10 @@ end
 
 spawn(function()
     pcall(function()
-        while true do -- รอเวลาโดยไม่ระบุ
-
+        while wait() do -- รอเวลาโดยไม่ระบุ
             if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
                 local humanoidRootPart = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
                 local noclip = humanoidRootPart:FindFirstChild("BodyClip")
-
                 if not noclip then
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
