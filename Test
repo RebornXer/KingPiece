@@ -1,5 +1,3 @@
---1.3
-
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -2825,7 +2823,7 @@ spawn(function()
 					local Noclip = Instance.new("BodyVelocity")
 					Noclip.Name = "BodyClip"
 					Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-					Noclip.MaxForce = Vector3.new(1,1,1)
+					Noclip.MaxForce = Vector3.new(100,100,100)
 					Noclip.Velocity = Vector3.new(0,0,0)
 				
 			end
@@ -2926,6 +2924,30 @@ function Hop()
 	end
 	Teleport()
 end
+
+function UseSkill(skill)
+	Tool = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool")
+	local args = {
+		[1] = ""...TypeWeapon..."_"...WeaPon_Select..."_"...skill..."",
+		[2] = {
+			["MouseHit"] = CFrame.new(v.HumanoidRootPart.CFrame),
+			["Type"] = "Down"
+		}
+	}
+	
+	game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Functions"):WaitForChild("SkillAction"):InvokeServer(unpack(args))
+	task.wait()
+	local args = {
+		[1] = ""...TypeWeapon..."_"...WeaPon_Select..."_"...skill..."",
+		[2] = {
+			["MouseHit"] = CFrame.new(v.HumanoidRootPart.CFrame),
+			["Type"] = "Up"
+		}
+	}
+	
+	game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Functions"):WaitForChild("SkillAction"):InvokeServer(unpack(args))
+end
+
 
 ------------------------------------------------- Ui ----------------------------------------------------------
 
@@ -3054,7 +3076,7 @@ spawn(function()
                             AutoHaki()
                             EquipWeapon(WeaPon_Select)
                             TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) * CFrame.new(0,75,0))
-                            if _G.AutoSkill then 
+                            if Auto_Skill then 
                                 UseSkill("Z")
                                 UseSkill("X")
                                 UseSkill("C")
@@ -3155,7 +3177,7 @@ spawn(function()
                                 AutoHaki()
                                 EquipWeapon(WeaPon_Select)
                                 TP(v.HumanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0) - Vector3.new(0, 25, 0))
-                                if _G.AutoSkill then 
+                                if Auto_Skill then 
                                     UseSkill("Z")
                                     UseSkill("X")
                                     UseSkill("C")
@@ -3234,7 +3256,7 @@ spawn(function()
                                 AutoHaki()
                                 EquipWeapon(WeaPon_Select)
                                 TP(v.HumanoidRootPart.CFrame * CFrame.new(0,10,0))
-                                if _G.AutoSkill then 
+                                if Auto_Skill then 
                                     UseSkill("Z")
                                     UseSkill("X")
                                     UseSkill("C")
@@ -3282,10 +3304,13 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
     if Select_Weapon == "Melee" then
         WeaPon_Select = playerStats.FightingStyle.Value
+		TypeWeapon = FS
     elseif Select_Weapon == "Sword" then
         WeaPon_Select = playerStats.SwordName.Value
+		TypeWeapon = SW
     elseif Select_Weapon == "Fruit" then
         WeaPon_Select = playerStats.DFName.Value 
+		TypeWeapon = DF
     end
 end)
 
@@ -3293,6 +3318,10 @@ end)
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     _G.Method = value
+end)
+
+Main:AddToggleRight("Auto Skill",Auto_Skill,function(a)
+	Auto_Skill = a
 end)
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
