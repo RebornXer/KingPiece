@@ -1,5 +1,3 @@
---0.8
-
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -2791,6 +2789,18 @@ end
 	end
 	return uitab
 end
+--------------------------------------------- Function ----------------------------------------------
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if Auto_Click or Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_Kin then         
+                game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("SW_"..WeaPon_Select.."_M1")
+                game:GetService("ReplicatedStorage").Chest.Remotes.Functions.SkillAction:InvokeServer("FS_"..WeaPon_Select.."_M1")
+end
+end)
+end
+end)
 
 local RenUi = Update:AddWindow("RebornXer Hub","10039618734",Enum.KeyCode.RightControl)
 local Main = RenUi:AddTab("Auto Farm","6026568198")
@@ -3059,31 +3069,22 @@ end)
 
 ------------------------------------------------------------------ Right ------------------------------------------------------------------
 
+Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
+    Select_Weapon = value
+    local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+    if Select_Weapon == "Melee" then
+        WeaPon_Select = playerStats.FightingStyle.Value
+    elseif Select_Weapon == "Sword" then
+        WeaPon_Select = playerStats.SwordName.Value
+    elseif Select_Weapon == "Fruit" then
+        WeaPon_Select = playerStats.DFName.Value 
+    end
+end)
+
 
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     _G.Method = value
-end)
-
-Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
-    Select_Weapon = value
-    print("Selected Weapon:", Select_Weapon) -- พิมพ์ค่า value ที่ถูกเลือก
-    local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-    
-    if Select_Weapon == "Melee" then
-        WeaPon_Select = playerStats.FightingStyle.Value
-		print("DFName Value:", playerStats.FightingStyle.Value) -- พิมพ์ค่า DFName.Value จาก playerStats
-    elseif Select_Weapon == "Sword" then
-        WeaPon_Select = playerStats.SwordName.Value
-		print("DFName Value:", playerStats.SwordName.Value) -- พิมพ์ค่า DFName.Value จาก playerStats
-    elseif Select_Weapon == "Fruit" then
-        WeaPon_Select = playerStats.DFName.Value 
-		print("DFName Value:", playerStats.DFName.Value) -- พิมพ์ค่า DFName.Value จาก playerStats
-    end
-end)
-
-Main:AddButtonLeft("pring Test",function()
-	print(WeaPon_Select)
 end)
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
@@ -3093,4 +3094,8 @@ if _G.Walk_On_Water then
 else
  game:GetService("Workspace").watermove.Sea.CanCollide = false
 end
+end)
+
+Misc:AddToggleLeft("Auto Click",Auto_Click,function(a)
+	Auto_Click = a
 end)
