@@ -1,3 +1,5 @@
+--0.7
+
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -3056,42 +3058,24 @@ end)
     end)
 
 ------------------------------------------------------------------ Right ------------------------------------------------------------------
- 
-Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
-    _G.Select_Weapon = value
-    local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-    if _G.Select_Weapon == "Melee" then
-        MeleeSelect = playerStats.FightingStyle.Value
-    elseif _G.Select_Weapon == "Sword" then
-        SwordSelect = playerStats.SwordName.Value
-    elseif _G.Select_Weapon == "Fruit" then
-        FruitSelect = playerStats.DFName.Value 
-    end
-end)
+
 
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     _G.Method = value
 end)
 
-spawn(function()
-    while wait() do 
-        pcall(function()
-            if _G.Method == "Behind" then
-                MethodFarm = CFrame.new(0,0,DistanceMob)
-            elseif _G.Method == "Below" then
-                MethodFarm = CFrame.new(0,-DistanceMob,0) * CFrame.Angles(math.rad(90),0,0)
-            elseif _G.Method == "Upper" then
-                MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
-            else
-                MethodFarm = CFrame.new(0,DistanceMob,0)  * CFrame.Angles(math.rad(-90),0,0)
-            end
-        end)
+Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
+    Select_Weapon = value
+    print("Selected Weapon:", Select_Weapon) -- พิมพ์ค่า value ที่ถูกเลือก
+    local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+    if Select_Weapon == "Melee" then
+        MeleeSelect = playerStats.FightingStyle.Value
+    elseif Select_Weapon == "Sword" then
+        SwordSelect = playerStats.SwordName.Value
+    elseif Select_Weapon == "Fruit" then
+        FruitSelect = playerStats.DFName.Value 
     end
-end)
-
-Main:AddButtonLeft("Test",function()
-    print(""..._G.Select_Weapon)
 end)
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
