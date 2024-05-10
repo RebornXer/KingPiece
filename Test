@@ -3058,13 +3058,13 @@ end)
 ------------------------------------------------------------------ Right ------------------------------------------------------------------
  
 Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
-    Select_Weapon = value
+    _G.Select_Weapon = value
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-    if Select_Weapon == "Melee" then
+    if _G.Select_Weapon == "Melee" then
         MeleeSelect = playerStats.FightingStyle.Value
-    elseif Select_Weapon == "Sword" then
+    elseif _G.Select_Weapon == "Sword" then
         SwordSelect = playerStats.SwordName.Value
-    elseif Select_Weapon == "Fruit" then
+    elseif _G.Select_Weapon == "Fruit" then
         FruitSelect = playerStats.DFName.Value 
     end
 end)
@@ -3091,7 +3091,7 @@ spawn(function()
 end)
 
 Main:AddButtonLeft("Test",function()
-    print(Select_Weapon)
+    print(""..._G.Select_Weapon)
 end)
 
 Misc:AddToggleLeft("Walk on Water",_G.Walk_On_Water,function(a)
