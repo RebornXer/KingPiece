@@ -2818,14 +2818,15 @@ end
 
 spawn(function()
 	pcall(function()
-		while wait() do
+		while wait(0) do
 		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
 					local Noclip = Instance.new("BodyVelocity")
 					Noclip.Name = "BodyClip"
 					Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-					Noclip.MaxForce = Vector3.new(100,100,100)
+					Noclip.MaxForce = Vector3.new(3,3,3)
 					Noclip.Velocity = Vector3.new(0,0,0)
-				
+		else
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
 			end
 		end
 	end)
@@ -3347,18 +3348,6 @@ Main:AddToggleRight("Auto Skill",Auto_Skill,function(a)
 	Auto_Skill = a
 end)
 
-Main:AddToggleRight("Black Screen",Black_Screen,function(a)
-	Black_Screen = a
-	if Black_Screen == true then
-		game:GetService("RunService"):Set3dRenderingEnabled(false)
-		wait()
-		blackscreen(true)
-	elseif Black_Screen == false then
-		game:GetService("RunService"):Set3dRenderingEnabled(true)
-		blackscreen(false)
-	end
-end)
-
 local player = game:GetService("Players").LocalPlayer
 
 local blackscreen = function(enable)
@@ -3379,6 +3368,20 @@ local blackscreen = function(enable)
     uiFrame.Size = UDim2.new(0, 72727, 0, 72727)
     uiFrame.Position = UDim2.new(0, 0, -5, 0)
 end
+
+
+Main:AddToggleRight("Black Screen",Black_Screen,function(a)
+	Black_Screen = a
+	if Black_Screen == true then
+		game:GetService("RunService"):Set3dRenderingEnabled(false)
+		wait()
+		blackscreen(true)
+	elseif Black_Screen == false then
+		game:GetService("RunService"):Set3dRenderingEnabled(true)
+		blackscreen(false)
+	end
+end)
+
 
 Main:AddSeperatorRight("Auto Stats")
     
