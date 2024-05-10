@@ -2805,12 +2805,13 @@ end)
 function TP(pos)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 end
-
+ 
+ local NamePlayer = game:GetService("Players").LocalPlayer.Name
  
 function AutoHaki()
 	pcall(function()
-		if game.Players.LocalPlayer.Character.Haki.Value ~= 1 then
-			game:GetService("Players").LocalPlayer.Character.Services.Client.Armament:FireServer()
+		if game:GetService("Workspace").PlayerCharacters.NamePlayer.Services.Haki.Value == 0  then
+			game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Events"):WaitForChild("Armament"):FireServer()
 			wait(6)
 		end
 	end)
@@ -2820,14 +2821,16 @@ spawn(function()
 	pcall(function()
 		while wait(0) do
 		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
+			if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
 					local Noclip = Instance.new("BodyVelocity")
 					Noclip.Name = "BodyClip"
 					Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 					Noclip.MaxForce = Vector3.new(3,3,3)
-					Noclip.Velocity = Vector3.new(0,0,0)
+					Noclip.Velocity = Vector3.new(3,3,3)
 		else
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-			end
+		end	
+		end
 		end
 	end)
 end)
@@ -2836,8 +2839,9 @@ spawn(function()
 	while wait() do
 		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
 			pcall(function()
+				if game:GetService("Workspace").PlayerCharacters.NamePlayer.Services.KenOpen.Value == false then
 				game:GetService("Players").LocalPlayer.Character.Services.Client.KenEvent:InvokeServer(true)
-			end)
+			end) 
 		end
 	end
 end)
