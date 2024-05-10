@@ -3060,20 +3060,14 @@ end)
 Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
     Select_Weapon = value
     local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-     MeleeSelect = playerStats.FightingStyle.Value
-    SwordSelect = playerStats.SwordName.Value
-    FruitSelect = playerStats.DFName.Value 
-
     if Select_Weapon == "Melee" then
-        MeleeSelect
+        MeleeSelect = playerStats.FightingStyle.Value
     elseif Select_Weapon == "Sword" then
-        SwordSelect
+        SwordSelect = playerStats.SwordName.Value
     elseif Select_Weapon == "Fruit" then
-        FruitSelect
+        FruitSelect = playerStats.DFName.Value 
     end
 end)
-
-
 
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
