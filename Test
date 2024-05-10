@@ -3339,7 +3339,7 @@ spawn(function()
 	end
 end)
 
-Main:AddSliderRight("Distance",,1,100,10,function(value)
+Main:AddSliderRight("Distance",1,100,10,function(value)
 	DistanceMob = value
 end)
 
