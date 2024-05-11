@@ -3337,7 +3337,14 @@ end)
 
 Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
     Select_Weapon = value
+	
+	
+end)
+
+
+spawn(function()
 	while true do
+		pcall(function()
 		local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
 		if Select_Weapon == "Melee" then
 			WeaPon_Select = playerStats.FightingStyle.Value
@@ -3350,12 +3357,9 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
 			TypeWeapon = "DF"
 		end
 		wait() -- หยุดสักครู่ก่อนที่จะวน loop ต่อ
-	end
-	
+	end)
+end
 end)
-
-
-
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     Select_Method = value
