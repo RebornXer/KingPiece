@@ -2844,11 +2844,12 @@ spawn(function()
                     Noclip.Parent = humanoidRootPart
                     Noclip.MaxForce = Vector3.new(1000000, 1000000, 1000000)
                     Noclip.Velocity = Vector3.new(0, 0, 0)
-                else
-                    noclip:Destroy()
-                end
             end
-        end
+        elseif not Auto_Ghost_Ship and not Auto_Hydra and not Auto_Sea_King then
+			noclip:Destroy()
+		end
+		end
+
     end)
 end)
 
