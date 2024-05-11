@@ -1,4 +1,5 @@
 if Mix_Function_SeaEvent then
+	Hop_Mix = true
 	Auto_Hydra = true
 	Auto_Sea_King = true
 	Auto_Ghost_Ship = true
