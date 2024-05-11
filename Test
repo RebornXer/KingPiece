@@ -1,3 +1,15 @@
+if Mix_Function_SeaEvent then
+	Auto_Hydra = true
+	Auto_Sea_King = true
+	Auto_Ghost_Ship = true
+	Select_Weapon = "Sword"
+	Auto_Skill = true
+	Black_Screen = true
+	Walk_On_Water = true
+	Select_Method = "Upper"
+end
+
+
 local ZenHub = Instance.new("ScreenGui")
 local Open = Instance.new("TextButton")
 local fuckshit = Instance.new("UICorner")
@@ -2829,7 +2841,7 @@ spawn(function()
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
                     Noclip.Parent = humanoidRootPart
-                    Noclip.MaxForce = Vector3.new(10000, 10000, 10000)
+                    Noclip.MaxForce = Vector3.new(1000000, 1000000, 1000000)
                     Noclip.Velocity = Vector3.new(0, 0, 0)
                 else
                     noclip:Destroy()
@@ -2845,7 +2857,7 @@ spawn(function()
 		if Auto_Ghost_Ship or Auto_Hydra or Auto_Sea_King then
 			pcall(function()
 				if game:GetService("Workspace").PlayerCharacters.NamePlayer.Services.KenOpen.Value == false then
-				game:GetService("Players").LocalPlayer.Character.Services.Client.KenEvent:InvokeServer(true)
+					game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Functions"):WaitForChild("KenEvent"):InvokeServer()
 				end
 			end) 
 		end
@@ -2971,8 +2983,8 @@ function UseSkill(skill)
 ------------------------------------------------- Ui ----------------------------------------------------------
 
 local RenUi = Update:AddWindow("RebornXer Hub","10039618734",Enum.KeyCode.RightControl)
-local Main = RenUi:AddTab("Auto Farm","6026568198")
-    local Teleport = RenUi:AddTab("Teleport","7044226690")
+local Main = RenUi:AddTab("Farm","6026568198")
+    local Teleport = RenUi:AddTab("Player - TP","7044226690")
     local Misc = RenUi:AddTab("Misc","6034900727")
     local Setting = RenUi:AddTab("","")
     
