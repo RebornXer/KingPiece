@@ -3339,20 +3339,22 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
    
 end)
 
-
-while wait() do
+while true do
 	local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-if Select_Weapon == "Melee" then
-   WeaPon_Select = playerStats.FightingStyle.Value
-   TypeWeapon = FS
-elseif Select_Weapon == "Sword" then
-   WeaPon_Select = playerStats.SwordName.Value
-   TypeWeapon = SW
-elseif Select_Weapon == "Fruit" then
-   WeaPon_Select = playerStats.DFName.Value 
-   TypeWeapon = DF
+	if Select_Weapon == "Melee" then
+		WeaPon_Select = playerStats.FightingStyle.Value
+		TypeWeapon = "FS"
+	elseif Select_Weapon == "Sword" then
+		WeaPon_Select = playerStats.SwordName.Value
+		TypeWeapon = "SW"
+	elseif Select_Weapon == "Fruit" then
+		WeaPon_Select = playerStats.DFName.Value 
+		TypeWeapon = "DF"
+	end
+	wait() -- หยุดสักครู่ก่อนที่จะวน loop ต่อ
 end
-end
+
+
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     Select_Method = value
