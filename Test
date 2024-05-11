@@ -3336,22 +3336,22 @@ end)
 
 Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value)
     Select_Weapon = value
-    local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
-	 while wait() do
-    if Select_Weapon == "Melee" then
-        WeaPon_Select = playerStats.FightingStyle.Value
-		TypeWeapon = FS
-    elseif Select_Weapon == "Sword" then
-        WeaPon_Select = playerStats.SwordName.Value
-		TypeWeapon = SW
-    elseif Select_Weapon == "Fruit" then
-        WeaPon_Select = playerStats.DFName.Value 
-		TypeWeapon = DF
-	end
-    end
+   
 end)
 
-
+local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+while wait() do
+if Select_Weapon == "Melee" then
+   WeaPon_Select = playerStats.FightingStyle.Value
+   TypeWeapon = FS
+elseif Select_Weapon == "Sword" then
+   WeaPon_Select = playerStats.SwordName.Value
+   TypeWeapon = SW
+elseif Select_Weapon == "Fruit" then
+   WeaPon_Select = playerStats.DFName.Value 
+   TypeWeapon = DF
+end
+end
 
 Main:AddDropdownRight("Select Method",{"Behind","Below","Upper"},function(value)
     Select_Method = value
