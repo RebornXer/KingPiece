@@ -3339,8 +3339,9 @@ Main:AddDropdownRight("Select Weapon", {"Melee","Sword","Fruit"}, function(value
    
 end)
 
-local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
+
 while wait() do
+	local playerStats = game:GetService("Players").LocalPlayer.PlayerStats
 if Select_Weapon == "Melee" then
    WeaPon_Select = playerStats.FightingStyle.Value
    TypeWeapon = FS
