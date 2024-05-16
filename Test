@@ -3010,16 +3010,55 @@ Main:AddToggleLeft("Auto Farm",Auto_Farm,function(a)
 Auto_Farm = a
 end)
 
+function CheckQuest()
+	local MyLevel = game.Players.LocalPlayer.PlayerStats.lvl.Value
+      if MyLevel == 0 or MyLevel <= 9 then
+	MonQuest = "Kill 4 Soldiers"
+	PahtNPC = game:GetService("Workspace").AllNPC["Starter Island Quest"].CFrame
+	  end
+	end
 
-spawn(function()
- while wait() do
-    pcall(function()
-      if Auto_Farm then
-      end
-      end)
-  end
-end)
 
+ 
+
+	spawn(function()
+		while wait() do
+			pcall(function()
+				if Auto_Farm then
+					CheckQuest()
+					local questBoard = game.Players.LocalPlayer.PlayerGui.Quest.QuestBoard
+					if not questBoard.Visible then
+						TP(PahtNPC)
+						game:GetService("ReplicatedStorage").Chest.Remotes.Functions.Quest:InvokeServer("take", MonQuest)
+					else
+						local questText = questBoard.QuestCount.Text
+						local Ms = string.sub(questText, 5, #questText)
+						local monsters = game:GetService("Workspace").Monster
+						if monsters.Mon:FindFirstChild(Ms) or monsters.Boss:FindFirstChild(Ms) then
+							for _, v in pairs(monsters:GetDescendants()) do
+								if v.Name == Ms and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+									repeat
+										wait()
+										AutoHaki()
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * MethodFarm
+										EquipWeapon(_G.SelectWeapon)
+										v.Humanoid.WalkSpeed = 0
+										if _G.AutoSkill then
+											UseSkill("Z")
+											UseSkill("X")
+											UseSkill("C")
+											UseSkill("V")
+										end
+									until not v.Parent or v.Humanoid.Health <= 0 or not _G.AutoFarm or not questBoard.Visible
+								end
+							end
+						end
+					end
+				end
+			end)
+		end
+	end)
+	
 Main:AddSeperatorLeft("World Quest")
 
 Main:AddToggleLeft("Auto Sea Two",Auto_Sea_Two,function(a)
