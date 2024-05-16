@@ -3027,7 +3027,7 @@ function CheckQuest()
 				if Auto_Farm then
 					CheckQuest()
 					local questBoard = game.Players.LocalPlayer.PlayerGui.Quest.QuestBoard
-					if not questBoard.Visible then
+					if not questBoard.Visible == false then
 						TP(PahtNPC)
 						game:GetService("ReplicatedStorage").Chest.Remotes.Functions.Quest:InvokeServer("take", MonQuest)
 					else
@@ -3049,7 +3049,7 @@ function CheckQuest()
 											UseSkill("C")
 											UseSkill("V")
 										end
-									until not v.Parent or v.Humanoid.Health <= 0 or not _G.AutoFarm or not questBoard.Visible
+									until not v.Parent or v.Humanoid.Health <= 0 or not _G.AutoFarm or not questBoard.Visible == false
 								end
 							end
 						end
