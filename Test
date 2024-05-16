@@ -3012,7 +3012,7 @@ end)
 
 function CheckQuest()
 	local MyLevel = game.Players.LocalPlayer.PlayerStats.lvl.Value
-      if MyLevel == 0 or MyLevel <= 9 then
+      if MyLevel == 0 or MyLevel <= 80 then
 	MonQuest = "Kill 4 Soldiers"
 	PahtNPC = game:GetService("Workspace").AllNPC["Starter Island Quest"].CFrame
 	  end
